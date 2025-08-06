@@ -1,75 +1,74 @@
----
+# 🌐 Sollidam (சொல்லிடம்) – Tamil Nadu's 3-Word Geocoding System
 
-# Sollidam
+> 🧭 A modern location encoding system that converts GPS coordinates into simple, memorable 3-word addresses – tailored for Tamil Nadu.
 
-## (Beta)
-
-A modern React TypeScript application for location encoding and mapping, featuring an interactive map interface with Tamil Nadu-specific grid system.
 
 ---
 
-## Project Vision
+## 🚀 Project Vision
 
-**Sollidam** (சொல்லிடம்) is a free, open-source location encoding system inspired by What3Words, built especially for Tamil Nadu. It turns complex GPS coordinates into simple and memorable three-word addresses, with optional support for floor-level precision.
+**Sollidam** (சொல்லிடம்) is an open-source alternative to What3Words — made for Tamil Nadu.
 
-### Why Sollidam?
+❌ Problems with traditional Indian addresses:
+- “2nd street near Murugan temple” — ambiguous and non-machine-readable
+- Many areas lack house numbers
+- Difficult for voice assistants and low-literacy users
 
-Tamil Nadu and much of India struggle with ambiguous or non-standard addresses:
-
-* "2nd street near murugan temple" is not machine-readable
-* Many buildings lack house numbers or floor indicators
-* Voice assistants and low-literacy populations face usability issues
-* Existing systems (like What3Words) are closed-source, do not support floor levels, and require internet access
-
-**Sollidam solves this.**
-
-* Open-source and fully transparent
-* Works offline in mobile (not yet implemented)
-* Tamil Nadu specific
-* Floor-level support
+✅ Sollidam’s Solution:
+- Converts `GPS ↔ 3-word address`
+- Tamil Nadu-specific
+- Works without internet (coming soon)
+- **Open-source** and free forever
 
 ---
 
-## Serverless API (No Frontend)
+## ✨ Key Features
 
-### Goal
-
-Create a simple, production-ready API that:
-
-* Converts **GPS coordinates ↔ 3-word code** using existing `Sollidam` algorithm
-* Works via REST endpoints
-* Deployed fully **serverless** with **no frontend**
-* Also supports **Telegram Bot integration (Coming Soon)**
-
-### Tech Stack
-
-* **React 18**: Modern UI library for building interactive interfaces.
-* **TypeScript**: Type-safe JavaScript for robust code and better developer experience.
-* **React Router DOM v6**: Client-side routing for seamless navigation.
-* **Leaflet.js**: Open-source library for interactive maps and geospatial features.
-* **Lucide React**: Icon library for crisp and modern SVG icons.
-* **CSS3**: Responsive styling with mobile-first design patterns.
+- 🔁 **Bi-directional encoding**: GPS ⇄ 3-word code
+- 🗺️ Interactive Leaflet-based grid map
+- ⚡ Serverless API with REST support
+- ✅ Tamil Nadu-specific logic
+- 📡 Telegram Bot integration (Coming Soon)
+- 🔓 Fully open-source
 
 ---
 
-## API Documentation
+## 🧰 Tech Stack
 
-### Endpoint 1: Convert Words to Coordinates
+| Layer        | Tech Used                                 |
+| ------------ | ------------------------------------------ |
+| Frontend     | React 18, TypeScript, React Router v6      |
+| UI & Icons   | CSS3, Lucide React                         |
+| Maps         | Leaflet.js                                 |
+| API (Serverless) | TypeScript (Node.js), Vercel Functions  |
 
-**GET** Convert a 3-word address to geographic coordinates
+---
 
-```url
-https://api-sollidam.vercel.app/api/lookup?words=word1.word2.word3
+## 🌍 Live Links
+
+🔗 **Main Application**:  
+[`https://sollidam20.vercel.app`](https://sollidam20.vercel.app)
+
+🔗 **API Base URL**:  
+[`https://api-sollidam.vercel.app`](https://api-sollidam.vercel.app)
+
+
+---
+
+## 📡 REST API Usage
+
+### 🔁 3-word ➝ Coordinates
+
+```http
+GET /api/lookup?words=word1.word2.word3
 ```
 
-**Example Request:**
-
-```url
+**Example:**
+```http
 GET https://api-sollidam.vercel.app/api/lookup?words=blue.sky.cloud
 ```
 
-**Response Format:**
-
+**Response:**
 ```json
 {
   "lat": 8.795380650062402,
@@ -77,112 +76,73 @@ GET https://api-sollidam.vercel.app/api/lookup?words=blue.sky.cloud
 }
 ```
 
-### Endpoint 2: Convert Coordinates to Words
+---
 
-**GET** Convert geographic coordinates to a 3-word address
+### 🔁 Coordinates ➝ 3-word
 
-```url
-https://api-sollidam.vercel.app/api/lookup?location=latitude,longitude
+```http
+GET /api/lookup?location=latitude,longitude
 ```
 
-**Example Request:**
-
-```url
+**Example:**
+```http
 GET https://api-sollidam.vercel.app/api/lookup?location=11.0168,76.9558
 ```
 
-**Response Format:**
-
+**Response:**
 ```json
 {
   "words": "moon.visitor.point"
 }
 ```
 
-### API Code Repository
+---
 
-To explore the backend logic and integrate your own tools:
+## 🤖 Telegram Bot (Coming Soon)
 
-[**api-sollidam**](https://github.com/subhashraveendran/api-sollidam)
+Effortless location sharing:
 
-
-### API Base URL:
-
-```
-https://api-sollidam.vercel.app
-```
-
-Main Application:
-
-```
-https://sollidam.vercel.app
-```
+- 🧭 Share location → Receive 3-word code + map link
+- 📥 Send 3-word code → Get coordinates and location preview
+- 🔗 Works without needing GPS apps
 
 ---
 
-## Telegram Bot Integration (Coming Soon)
-
-This feature will allow:
-
-* Share location → Get 3-word code + map link
-* Send 3-word code → Get location + map
-* Seamless location sharing without GPS apps
-
----
-
-## Local Development
+## 🛠️ Local Development
 
 ```bash
+# Clone repository
+git clone https://github.com/subhashraveendran/sollidam
+cd sollidam
+
 # Install dependencies
 npm install
 
-# Start dev server
+# Start development server
 npm start
 
 # Build for production
 npm run build
 ```
 
-## Testing
+---
+
+## 🧪 Testing
 
 ```bash
-# Run tests
-npm test
-
-# Accuracy and Stress
-npm run accuracy-test
-npm run stress-test
+npm test               # Run unit tests
+npm run accuracy-test  # Test grid accuracy
+npm run stress-test    # Performance under heavy load
 ```
 
-## Deployment
+---
 
-### Vercel (Recommended)
 
-* One-click: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/subhashraveendran/sollidam)
-* Or manually using:
+## 📜 License
 
-```bash
-npm install -g vercel
-vercel --prod
-```
+Licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-## Key Features
+---
 
-* 3-word reversible encoding for Tamil Nadu
-* Floor-level support
-* Grid-encoded map using Leaflet.js
-* Works offline in mobile (not yet implemented)
-* Fully open-source and documented
-
-## License
-
-This project is licensed under the MIT License.
-
-## GitHub
-
-* Repository: [github.com/subhashraveendran/sollidam](https://github.com/subhashraveendran/sollidam)
-* API Documentation: [https://api-sollidam.vercel.app](https://api-sollidam.vercel.app)
-
-Made with 💖 for Hero's on Wheels
-
-\#NenjeEzhu
+Made with ❤️ in Tamil Nadu for **Hero’s on Wheels**  
+#NenjeEzhu ✊
